@@ -3,6 +3,7 @@ package stepDefinitions;
 import java.util.List;
 import java.util.Map;
 
+import org.applicationHooks.ApplicationHooks;
 import org.junit.Assert;
 import org.pages.LoginPage;
 import org.pages.TasksPage;
@@ -25,7 +26,7 @@ public class TasksStepDef {
 		String password = credList.get(0).get("password");
 		System.out.println("userName : "+userName);
 		System.out.println("password : "+password);
-		DriverFactory.getDriver().get("http://localhost/login.do");
+		DriverFactory.getDriver().get(ApplicationHooks.prop.getProperty("url"));
 		tp_Obj = lp_obj.doLogin(userName, password);
 	}
 
