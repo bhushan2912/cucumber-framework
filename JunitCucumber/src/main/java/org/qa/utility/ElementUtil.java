@@ -113,11 +113,11 @@ public class ElementUtil {
 	}
 	public void waitForElementToBeClickable(WebElement element) {
 		
-		new WebDriverWait(driver, 60).until(ExpectedConditions.elementToBeClickable(element));
+		new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.elementToBeClickable(element));
 	}
 	public void waitForElementDisplayed(WebElement element) {
 
-		new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(element));
+		new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOf(element));
 	}
 	public void typeInput(WebElement element, String input) {
 		waitForElementDisplayed(element);

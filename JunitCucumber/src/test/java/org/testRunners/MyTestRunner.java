@@ -6,7 +6,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "src/test/resources/org/features/SearchFuncPage.feature",
+		features = "src/test/resources/org/features/TasksPage.feature",
 		glue = {"stepDefinitions","org/applicationHooks"},
 		monochrome=true,
 		dryRun=false,

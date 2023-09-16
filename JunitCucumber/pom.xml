@@ -26,6 +26,14 @@
 			<version>${cucumber.version}</version>
 			<!-- <scope>test</scope> -->
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+			<dependency>
+			    <groupId>io.github.bonigarcia</groupId>
+			    <artifactId>webdrivermanager</artifactId>
+			    <version>5.5.2</version>
+			</dependency>
+
+		
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
@@ -39,9 +47,9 @@
 			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>4.0.0</version>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-java</artifactId>
+		    <version>4.9.0</version>
 		</dependency>
 		<!-- <dependency> <groupId>io.github.bonigarcia</groupId> <artifactId>webdrivermanager</artifactId> 
 			<version>4.2.2</version> </dependency> -->
