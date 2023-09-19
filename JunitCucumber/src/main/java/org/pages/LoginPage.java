@@ -11,13 +11,16 @@ import org.qa.utility.ElementUtil;
 public class LoginPage {
 	private WebDriver driver;
 	
-	@FindBy(xpath="//div[div[span[span[text()='Login']]]]//input[@type='text']")
+	@FindBy(css="table.textFieldsTable #username")
 	private WebElement userName;
 	
-	@FindBy(xpath="//div[div[span[span[text()='Login']]]]//input[@type='password']")
+	@FindBy(css="#demoCredentials>tbody>:first-child b")
+	private WebElement getUserName;
+	
+	@FindBy(css="input.textField.pwdfield")
 	private WebElement password;
 	
-	@FindBy(xpath="//div[div[span[span[text()='Login']]]]//button[@type='submit']")
+	@FindBy(id="loginButton")
 	private WebElement loginButton;
 	
 	@FindBy(xpath="//a/span[text()='Forgot?']")

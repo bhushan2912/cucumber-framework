@@ -22,7 +22,7 @@ public class DmartToValidation {
 	@FindBy(id="pincodeInput")
 	private WebElement inputcity;
 	
-	@FindBy(css=".src-client-components-pincode-widget-__pincode-widget-module___pincode-list>li>button")
+	@FindBy(css="div.pincode-widget_slide-cntr__yQ7Wn button div")
 	private WebElement listCity;
 	
 	@FindBy(xpath="//button[text()='START SHOPPING']")
@@ -31,11 +31,11 @@ public class DmartToValidation {
 	@FindBy(id="scrInput")
 	private WebElement searchContent;
 	
-	@FindBy(xpath="//span[contains(@class,'MuiButton-label jss')]")
+	@FindBy(css="div.search_src-backdrop-cntr__7iWhO button")
 	private WebElement searchButton;
 	
-	@FindBy(css=".MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-1>div>div>:nth-child(2)>a")
-	private WebElement ck;
+	@FindBy(css="h1.search-landing_searchHeaderDiv__wk7EX span")
+	private WebElement results;
 	
 	
 	public void searchCity(String City) {
@@ -43,17 +43,16 @@ public class DmartToValidation {
 		ElementUtil.eu.typeInput(inputcity, "kalyan");
 		ElementUtil.eu.waitForElementDisplayed(listCity);
 		
-		List<WebElement> cities=driver.findElements(By.cssSelector(".src-client-components-pincode-widget-__pincode-widget-module___pincode-list>li>button"));
+		List<WebElement> cities=driver.findElements(By.cssSelector("div.pincode-widget_slide-cntr__yQ7Wn button div"));
 		
-		for(int i=0;i<6;i++) {
+		for(int i=0;i<cities.size();i++) {
+			cities=driver.findElements(By.cssSelector("div.pincode-widget_slide-cntr__yQ7Wn button div"));
 			String city=cities.get(i).getText();
 			if(city.equals(City)) {
 				cities.get(i).click();
-				
 			}
 		}
 		ElementUtil.eu.clickOnElement(startShopping);
-		
 	}
 	
 	public void searchGroc(String groc) {//cookies
@@ -65,11 +64,11 @@ public class DmartToValidation {
 	}
 	
 	public void cookiesDetails(){
-		ElementUtil.eu.waitForElementDisplayed(ck);
+		ElementUtil.eu.waitForElementDisplayed(results);
 		ElementUtil.eu.scrollByPageDown(driver,50);
-		List <WebElement> product=driver.findElements(By.cssSelector(".MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-1>div>div>:nth-child(2)>a"));
-		List <WebElement> Mrp=driver.findElements(By.cssSelector(".MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-1>div>div>:nth-child(3)>div>div>:first-child>:nth-child(2)>:nth-child(2)"));
-		List <WebElement> DmartPrice=driver.findElements(By.cssSelector(".MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-1>div>div>:nth-child(3)>div>div>:nth-child(2)>:nth-child(2)>:nth-child(2)"));
+		List <WebElement> product=driver.findElements(By.cssSelector("div.MuiGrid-spacing-xs-1>div.MuiGrid-root>:first-child>:nth-child(2)>div"));
+		List <WebElement> Mrp=driver.findElements(By.cssSelector("div.vertical-card_price__Y6yhX>div>div>:first-child>:nth-child(2)>:nth-child(2)"));
+		List <WebElement> DmartPrice=driver.findElements(By.cssSelector("div.vertical-card_price__Y6yhX>div>div>:nth-child(2)>:nth-child(2)>:nth-child(2)"));
 		
 		for(int i=0;i<product.size();i++) {
 			String name=product.get(i).getText();
@@ -79,7 +78,6 @@ public class DmartToValidation {
 			ElementUtil.eu.updateCellValue(".\\src\\test\\resources\\org\\Excel\\AppData.xlsx","Sheet3", row, 1, name);
 			ElementUtil.eu.updateCellValue(".\\src\\test\\resources\\org\\Excel\\AppData.xlsx","Sheet3", row, 2, mrp);
 			ElementUtil.eu.updateCellValue(".\\src\\test\\resources\\org\\Excel\\AppData.xlsx","Sheet3", row, 3, Dprice);
-			
 			System.out.println(name+"      MRP:"+mrp+"     Dprice: "+Dprice);
 		}
 	}
