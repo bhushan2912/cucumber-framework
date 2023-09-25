@@ -1,5 +1,7 @@
 package Pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,8 +40,8 @@ public class LoginPage {
 		return forgotLink.isDisplayed();
 	}
 	public boolean isMyAccountLabelDisplayed() {
-		ElementUtil.eu.waitForStaleElement(driver,10,myAccountLabel);
-		ElementUtil.eu.waitForVisiblityOfElementLocated(driver, 5, "xpath", "//div[text()='My Account']");
+		ElementUtil.eu.waitForStaleElement(driver,Duration.ofSeconds(30),myAccountLabel);
+		ElementUtil.eu.waitForVisiblityOfElementLocated(driver, Duration.ofSeconds(30), "xpath", "//div[text()='My Account']");
 		return myAccountLabel.isDisplayed();
 	}
 	public void enterUserName() {

@@ -1,5 +1,6 @@
 package Pages;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -56,7 +57,7 @@ public class DmartToValidation {
 	}
 	
 	public void searchGroc(String groc) {//cookies
-		ElementUtil.eu.waitForStaleElement(driver,10,searchContent);
+		ElementUtil.eu.waitForStaleElement(driver,Duration.ofSeconds(30),searchContent);
 		ElementUtil.eu.clickOnElement(searchContent);
 		ElementUtil.eu.typeInput(searchContent, groc);
 		

@@ -30,7 +30,7 @@ public class ElementUtil {
 	
 	public static ElementUtil eu = new ElementUtil();
 	public void waitForPageLoad(WebDriver driver) {
-		WebDriverWait wait = new WebDriverWait(driver, Contants.small_wait);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 	    wait.until(new ExpectedCondition<Boolean>() {
 	        public Boolean apply(WebDriver wdriver) {
 	            return ((JavascriptExecutor) driver).executeScript(
@@ -82,7 +82,7 @@ public class ElementUtil {
 		Select sel = new Select(ele);
 		return sel.getOptions().size();
 	}
-	public void waitForVisiblityOfElementLocated(WebDriver driver, int time, String type, String locator) {
+	public void waitForVisiblityOfElementLocated(WebDriver driver, Duration time, String type, String locator) {
 		WebDriverWait wt = new WebDriverWait(driver, time);
 		switch(type) {
 			case "id": wt.until(ExpectedConditions.visibilityOfElementLocated(By.id(locator)));
@@ -95,7 +95,7 @@ public class ElementUtil {
 			break;
 		}
 	}
-	public boolean isAlertPresent(WebDriver driver, int time) {
+	public boolean isAlertPresent(WebDriver driver, Duration time) {
 		try {
 			WebDriverWait wt = new WebDriverWait(driver,time);
 			wt.until(ExpectedConditions.alertIsPresent());
@@ -104,7 +104,7 @@ public class ElementUtil {
 			return false;
 		}
 	}
-	public boolean waitForStaleElement(WebDriver driver, int time, WebElement ele) {
+	public boolean waitForStaleElement(WebDriver driver, Duration time, WebElement ele) {
 		try {
 			WebDriverWait wt = new WebDriverWait(driver,time);
 			wt.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(ele)));
@@ -119,11 +119,11 @@ public class ElementUtil {
 	}
 	public void waitForElementToBeClickable(WebElement element) {
 		
-		new WebDriverWait(driver, 60).until(ExpectedConditions.elementToBeClickable(element));
+		new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeClickable(element));
 	}
 	public void waitForElementDisplayed(WebElement element) {
 
-		new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(element));
+		new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(element));
 	}
 	public void typeInput(WebElement element, String input) {
 		waitForElementDisplayed(element);
@@ -169,5 +169,13 @@ public class ElementUtil {
 				e.printStackTrace();
 			}
 	}
-	
+	public void staleElementExceptionHandle(WebElement element) {
+		for (int i=0; i<5; i++) {
+			try {
+				waitForElementDisplayed(element);
+			}catch(Exception e) {
+//				System.out.println("Exception");
+			}
+		}
+	}
 }

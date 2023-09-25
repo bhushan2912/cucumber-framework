@@ -30,13 +30,13 @@ public class DriverManager {
 		String projectPath = System.getProperty("user.dir");
 		System.out.println("Project path: "+projectPath);
 		if (browser.equals("chrome")) {
-			//WebDriverManager.chromedriver().setup();
-			System.setProperty("webdriver.chrome.driver", projectPath+"\\drivers\\chromedriver.exe");
+//			WebDriverManager.chromedriver().setup();
+//			System.setProperty("webdriver.chrome.driver", projectPath+"\\drivers\\chromedriver.exe");
 			tlDriver.set(new ChromeDriver());
-//			tlDriver.set(WebDriverManager.chromedriver().setup());
+//			tlDriver.set(WebDriverManasger.chromedriver().setup());
 		} else if (browser.equals("firefox")) {
-			//WebDriverManager.firefoxdriver().setup();
-			System.setProperty("webdriver.firefox.driver", projectPath+"\\drivers\\geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
+//			System.setProperty("webdriver.firefox.driver", projectPath+"\\drivers\\geckodriver.exe");
 			tlDriver.set(new FirefoxDriver());
 		} else if (browser.equals("safari")) {
 			tlDriver.set(new SafariDriver());
