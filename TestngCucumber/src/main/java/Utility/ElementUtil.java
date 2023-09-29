@@ -30,7 +30,7 @@ public class ElementUtil {
 	
 	public static ElementUtil eu = new ElementUtil();
 	public void waitForPageLoad(WebDriver driver) {
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver,Contants.small_wait);
 	    wait.until(new ExpectedCondition<Boolean>() {
 	        public Boolean apply(WebDriver wdriver) {
 	            return ((JavascriptExecutor) driver).executeScript(
@@ -104,9 +104,9 @@ public class ElementUtil {
 			return false;
 		}
 	}
-	public boolean waitForStaleElement(WebDriver driver, Duration time, WebElement ele) {
+	public boolean waitForStaleElement(WebDriver driver, WebElement ele) {
 		try {
-			WebDriverWait wt = new WebDriverWait(driver,time);
+			WebDriverWait wt = new WebDriverWait(driver,Contants.small_wait);
 			wt.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(ele)));
 			return true;
 		} catch(Exception e) {

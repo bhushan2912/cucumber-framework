@@ -40,7 +40,7 @@ public class LoginPage {
 		return forgotLink.isDisplayed();
 	}
 	public boolean isMyAccountLabelDisplayed() {
-		ElementUtil.eu.waitForStaleElement(driver,Duration.ofSeconds(30),myAccountLabel);
+		ElementUtil.eu.waitForStaleElement(driver, myAccountLabel);
 		ElementUtil.eu.waitForVisiblityOfElementLocated(driver, Duration.ofSeconds(30), "xpath", "//div[text()='My Account']");
 		return myAccountLabel.isDisplayed();
 	}

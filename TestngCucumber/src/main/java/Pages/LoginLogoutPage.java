@@ -80,6 +80,7 @@ public class LoginLogoutPage extends ElementUtil{
 			driver.switchTo().frame(loginIframe);
 			String urlBeforeLogin = driver.getCurrentUrl();
 			System.out.println("UrlBeforeLogin :"+urlBeforeLogin);
+			waitForStaleElement(driver, numberInputField);
 			clickOnElement(numberInputField);
 			typeInput(numberInputField, user);
 			clickOnElement(continueButton);

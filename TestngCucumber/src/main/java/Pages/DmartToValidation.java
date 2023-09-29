@@ -57,7 +57,7 @@ public class DmartToValidation {
 	}
 	
 	public void searchGroc(String groc) {//cookies
-		ElementUtil.eu.waitForStaleElement(driver,Duration.ofSeconds(30),searchContent);
+		ElementUtil.eu.waitForStaleElement(driver ,searchContent);
 		ElementUtil.eu.clickOnElement(searchContent);
 		ElementUtil.eu.typeInput(searchContent, groc);
 		

@@ -7,7 +7,7 @@ Feature: User Login and Logout from skill academy page
     Given User is on testbook landing page 'https://beta.testbook.com/'
     And User clicks on skillAcademy page
    	And User is on skillAcademy page
-    When User logged in with login number '6333843813' and otp '428266' 
+    When User logged in with login number '6333843813' and otp '494171' 
     When User is on skillAcademy page in logged in state
     Then User is loggedout
 
