@@ -4,7 +4,7 @@ import Base.CustomizeTestNGCucumberRunner;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-		features = "src/test/resources/org/features/dmart.feature",
+		features = "src/test/resources/org/features/skillacademyLandingPage.feature",
 		glue = {"stepDef","Hooks"},
 		monochrome=true,
 		dryRun=false,
