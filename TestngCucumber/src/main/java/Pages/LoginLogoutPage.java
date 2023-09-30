@@ -62,6 +62,9 @@ public class LoginLogoutPage extends ElementUtil{
 		@FindBy(xpath="//a[text()=\" Skill Academy \"]")
 		private WebElement skillAcademyTab;
 		
+		@FindBy(css="div.course-selling__header .course-title>h1")
+		private WebElement courseTitle;
+		
 //		@FindBy(css="li.dropdown>img")
 //		private WebElement profileLogo;
 		
@@ -76,6 +79,7 @@ public class LoginLogoutPage extends ElementUtil{
 		}
 		
 		public void login(String user, String otp) {
+			waitForStaleElement(driver, signUpButton);
 			clickOnElement(signUpButton);
 			driver.switchTo().frame(loginIframe);
 			String urlBeforeLogin = driver.getCurrentUrl();
@@ -89,8 +93,8 @@ public class LoginLogoutPage extends ElementUtil{
 			clickOnElement(LoginButton);
 			driver.switchTo().defaultContent();
 //			staleElementExceptionHandle(sideNavHomeTab);
-//			waitForStaleElement(driver, 20, sideNavHomeTab);
-			waitForElementDisplayed(profilePicIcon);
+//			waitForStaleElement(driver, profilePicIcon);
+			staleElementExceptionHandle(profilePicIcon);
 //			clickOnElement(sideNavHomeTab);
 //			String urlAfterLogin = driver.getCurrentUrl();
 //			System.out.println("UrlAfterLogin :"+urlAfterLogin);
@@ -102,7 +106,18 @@ public class LoginLogoutPage extends ElementUtil{
 			waitForElementDisplayed(exploreProgramsCta);
 			return driver.getCurrentUrl();
 		}
-		
+		public String coursePageLanding(String slug, String courseType, String url) {
+			if(courseType.equals("selfPaced")) {
+				driver.get(url+slug+"/online-coaching-course");
+			}else {
+				driver.get(url+slug);
+			}
+			return courseTitle.getText();
+		}
+		public String validateLogin() {
+			waitForElementDisplayed(profilePicIcon);
+			return courseTitle.getText();
+		}
 		public void logout() {
 			String urlBeforeLogout = driver.getCurrentUrl();
 			System.out.println("UrlBeforeLogout :"+urlBeforeLogout);

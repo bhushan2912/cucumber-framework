@@ -9,6 +9,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -37,7 +38,6 @@ public class ElementUtil {
 	                "return document.readyState").equals("complete");
 	        }
 	    });
-		
 	    /*Wait<WebDriver> wait = new WebDriverWait(driver, 30);
 	    wait.until(new Function<WebDriver, Boolean>() {
 	        public Boolean apply(WebDriver driver) {
@@ -168,6 +168,24 @@ public class ElementUtil {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+	}
+	public String getCellValue(String fileName, String sheetName1, int rownum,int cellnum) {
+		FileInputStream fis = null;
+		try {
+			fis=new FileInputStream(".\\src\\test\\resources\\org\\Excel\\"+fileName);
+		}catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		Workbook workbook =null;
+		try {
+			workbook=new XSSFWorkbook(fis);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		Sheet sheet=workbook.getSheet(sheetName1);
+		Row row =sheet.getRow(rownum);
+		Cell cell=row.getCell(cellnum);
+		return cell.getStringCellValue();
 	}
 	public void staleElementExceptionHandle(WebElement element) {
 		for (int i=0; i<5; i++) {
